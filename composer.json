@@ -1,0 +1,16 @@
+{
+	"name": "npmweb/jquery-validator-custom-rules",
+	"description": "Additional jQuery validator rules",
+	"type": "library",
+    "license": "MIT",
+    "require": {
+        "robloach/component-installer": "*"
+    },
+    "extra": {
+        "component": {
+            "scripts": [
+                "src/jquery.validate.custom.rules.js"
+            ]
+        }
+    }
+}
