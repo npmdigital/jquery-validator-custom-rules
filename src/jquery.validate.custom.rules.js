@@ -17,3 +17,14 @@ jQuery.validator.addMethod("postalcode", function(postalcode, element) {
 	return this.optional(element) || postalcode.match(/^\d{5}(-\d{4})?$/);
 }, "Please specify a valid postal/zip code");
 
+jQuery.validator.addMethod("before_now", function(value, element) {
+	if(this.optional(element)) { return true; }
+	var mydate = new Date(value);
+	// TODO: this doesn't handle times well. probably best to use
+	// moment.js for parsing, but didn't want to add that dependency yet
+	if( typeof mydate === 'undefined' ) {
+		return false;
+	}
+	return mydate < new Date(); // today
+}, "Please specify a date that is in the past");
+
