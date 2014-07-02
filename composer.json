@@ -10,7 +10,10 @@
         "component": {
             "scripts": [
                 "src/jquery.validate.custom.rules.js"
-            ]
+            ],
+            "shim": {
+                "deps": ["jquery-validation"]
+            }
         }
     }
 }
