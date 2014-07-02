@@ -7,6 +7,11 @@
  * @author Josh Justice <josh.justice@northpoint.org>
  */
 
+/**
+ * Add any custom validation rules here.
+ *
+ * For details, see http://jqueryvalidation.org/jQuery.validator.addMethod
+ */
 jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
     phone_number = phone_number.replace(/\s+/g, "");
         return this.optional(element) || phone_number.length > 9 &&
