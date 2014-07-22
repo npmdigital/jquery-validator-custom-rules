@@ -33,3 +33,24 @@ jQuery.validator.addMethod("before_now", function(value, element) {
 	return mydate < new Date(); // today
 }, "Please specify a date that is in the past");
 
+jQuery.validator.addMethod("required_if", function(value, element, extras) {
+	console.dir(element);
+	
+	if(value == '') {return false; }
+	
+	var value_arr = extras.split(',');
+	var element_to_access = value_arr[0];
+	var values_to_access =value_arr[1].split("|");
+	
+	var value_of_element_to_access = $('[name=' + element_to_access + ']').val();
+	
+	var valid = false;
+	
+	for (var key in values_to_access) {
+		if (values_to_access[key] == value_of_element_to_access) {
+			valid = true;
+		}
+	}
+	
+	return valid;
+}, "This Field is required.");
