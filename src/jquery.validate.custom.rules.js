@@ -34,18 +34,18 @@ jQuery.validator.addMethod("before_now", function(value, element) {
 }, "Please specify a date that is in the past");
 
 jQuery.validator.addMethod("required_if", function(value, element, extras) {
-	if(value == '') {return false; }
+	if(value != '') {return true; }
 	
 	var value_arr = extras.split(',');
 	var element_to_access = value_arr[0];
 	var values_to_access =value_arr[1].split("|");
 	
 	var value_of_element_to_access = $("#" + element_to_access).val();
-	var valid = false;
+	var valid = true;
 	
 	for (var key in values_to_access) {
 		if (values_to_access[key] == value_of_element_to_access) {
-			valid = true;
+			valid = false;
 		}
 	}
 	
