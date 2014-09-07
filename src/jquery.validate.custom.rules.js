@@ -51,3 +51,58 @@ jQuery.validator.addMethod("required_if", function(value, element, extras) {
 	
 	return valid;
 }, "This Field is required.");
+jQuery.validator.addMethod("amount", function(value, element, extras) {
+  if (value == '') return false;
+  var floatVal = parseFloat(value.replace(/,/g, "")).toFixed(2);
+  if (isNaN( floatVal )) return false;
+
+  if (typeof extras !== 'undefined' && extras != '') {
+    var limits = extras.split(',');
+    for (var i=0;i<limits.length;i++) {
+      var lims = limits[i].split('=');
+      var limType = lims[0];
+      var limVal = parseFloat(lims[1]);
+      if (isNaN(limVal)) continue;
+      if (limType == 'min' && floatVal < limVal) return false;
+      if (limType == 'max' && floatVal > limVal) return false;
+    }
+    return true;
+  } else {
+    return floatVal > 0.00;
+  }
+
+}, function(extras,field) {
+  var msg = "Please enter a valid amount";
+
+  if (typeof extras !== 'undefined' && extras != '') {
+
+    var moneyDisplay = function(floatVal) {
+      return "$"+floatVal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    var limits = extras.split(',');
+    var hasMin = false, hasMax = false, min = 0, max = 0;
+    for (var i=0;i<limits.length;i++) {
+      var lims = limits[i].split('=');
+      var limType = lims[0];
+      var limVal = parseFloat(lims[1]);
+      switch (limType)  {
+        case 'min':
+          hasMin = true;
+          min = limVal;
+          break;
+        case 'max':
+          hasMax = true;
+          max = limVal;
+      }
+    }
+    if (hasMin && hasMax) {
+      msg += " between "+moneyDisplay(min)+" and "+moneyDisplay(max);
+    } else if (hasMin) {
+      msg += " more than "+moneyDisplay(min);
+    } else if (hasMax) {
+      msg += " less than "+moneyDisplay(max);
+    }
+  }
+  return msg;
+});
