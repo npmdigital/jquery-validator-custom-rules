@@ -1,0 +1,20 @@
+{
+  "name": "jquery-validator-custom-rules",
+  "version": "1.0.1",
+  "homepage": "https://github.com/npmweb/jquery-validator-custom-rules",
+  "authors": [
+    "Josh Justice <josh@need-bee.com>"
+  ],
+  "main": "src/jquery.validate.custom.rules.js",
+  "dependencies": {
+    "jquery-validation": ">= 1.13.1"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
