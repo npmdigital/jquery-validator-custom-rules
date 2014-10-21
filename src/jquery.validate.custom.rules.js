@@ -79,6 +79,37 @@ jQuery.validator.addMethod("required_if", function(value, element, extras) {
 
   return valid;
 }, "This Field is required.");
+
+jQuery.validator.addMethod("required_with", function(value, element, extras) {
+  var elements_arr = extras.split(',');
+
+  var fieldIsRequired = false;
+  for (var key in elements_arr) {
+    var value_of_element = $("#" + elements_arr[key]).val();
+    if (value_of_element != '') {
+      fieldIsRequired = true;
+    }
+  }
+
+  var valid = (!fieldIsRequired || value != '');
+  return valid;
+}, "This Field is required.");
+
+jQuery.validator.addMethod("required_with_all", function(value, element, extras) {
+  var elements_arr = extras.split(',');
+
+  var fieldIsRequired = true;
+  for (var key in elements_arr) {
+    var value_of_element = $("#" + elements_arr[key]).val();
+    if (value_of_element == '') {
+      fieldIsRequired = false;
+    }
+  }
+
+  var valid = (!fieldIsRequired || value != '');
+  return valid;
+}, "This Field is required.");
+
 jQuery.validator.addMethod("amount", function(value, element, extras) {
   if (value == '') return false;
   var floatVal = parseFloat(value.replace(/,/g, "")).toFixed(2);
