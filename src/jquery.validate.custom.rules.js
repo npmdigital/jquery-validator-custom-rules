@@ -61,6 +61,34 @@ jQuery.validator.addMethod("after_field", function(value, element, extras) {
   return "Please specify a date that is after "+extras;
 });
 
+jQuery.validator.addMethod("not_after_field", function(value, element, extras) {
+  if(this.optional(element)) { return true; }
+  var mydate = new Date(value);
+  var mydate2 = new Date($('#'+extras).val());
+  // TODO: this doesn't handle times well. probably best to use
+  // moment.js for parsing, but didn't want to add that dependency yet
+  if( typeof mydate === 'undefined' || typeof mydate2 === 'undefined' ) {
+    return false;
+  }
+  return mydate <= mydate2; // today
+}, function(extras,field) {
+  return "Please specify a date that is before "+extras;
+});
+
+jQuery.validator.addMethod("not_before_field", function(value, element, extras) {
+  if(this.optional(element)) { return true; }
+  var mydate = new Date(value);
+  var mydate2 = new Date($('#'+extras).val());
+  // TODO: this doesn't handle times well. probably best to use
+  // moment.js for parsing, but didn't want to add that dependency yet
+  if( typeof mydate === 'undefined' || typeof mydate2 === 'undefined' ) {
+    return false;
+  }
+  return mydate >= mydate2; // today
+}, function(extras,field) {
+  return "Please specify a date that is after "+extras;
+});
+
 jQuery.validator.addMethod("required_if", function(value, element, extras) {
   if(value != '') {return true; }
 
