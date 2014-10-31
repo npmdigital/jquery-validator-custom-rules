@@ -72,7 +72,7 @@ jQuery.validator.addMethod("not_after_field", function(value, element, extras) {
   }
   return mydate <= mydate2; // today
 }, function(extras,field) {
-  return "Please specify a date that is before "+extras;
+  return "Please specify a date that is on or before "+extras;
 });
 
 jQuery.validator.addMethod("not_before_field", function(value, element, extras) {
@@ -86,7 +86,7 @@ jQuery.validator.addMethod("not_before_field", function(value, element, extras) 
   }
   return mydate >= mydate2; // today
 }, function(extras,field) {
-  return "Please specify a date that is after "+extras;
+  return "Please specify a date that is on or after "+extras;
 });
 
 jQuery.validator.addMethod("required_if", function(value, element, extras) {
