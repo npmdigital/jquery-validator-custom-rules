@@ -193,3 +193,6 @@ jQuery.validator.addMethod("amount", function(value, element, extras) {
   }
   return msg;
 });
+jQuery.validator.addMethod("positive_integer", function(value, element) {
+  return value.match(/^[0-9]+$/) && value != 0;
+}, "Please enter a positive integer.");
