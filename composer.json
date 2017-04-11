@@ -1,5 +1,5 @@
 {
-	"name": "npmdigital/jquery-validator-custom-rules",
+	"name": "npmweb/jquery-validator-custom-rules",
 	"description": "Additional jQuery validator rules",
 	"type": "library",
     "license": "MIT",
